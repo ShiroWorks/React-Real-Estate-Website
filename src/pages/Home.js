@@ -10,7 +10,7 @@ const home = () => {
       <Hero>
         <Banner title="just buy a house" subtitle="rooms starting at £145,000">
           <Link to="/rooms" className="btn-primary">
-            our rooms
+            our houses
           </Link>
         </Banner>
       </Hero>
