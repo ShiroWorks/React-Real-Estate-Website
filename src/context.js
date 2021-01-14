@@ -53,8 +53,7 @@ export default class RoomProvider extends Component {
   componentDidMount() {
     // this.getData();
     this.db = new Dynamo();
-    let items = this.db.queryData('VT');
-    console.log(items);
+    let items = this.db.queryData();
     let rooms = this.formatData(items);
     let featuredRooms = rooms.filter(house => house.featured === true);
     //

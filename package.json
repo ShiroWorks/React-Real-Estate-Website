@@ -6,6 +6,7 @@
     "aws-sdk": "^2.827.0",
     "contentful": "^7.5.0",
     "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^5.16.0",
     "eslint-config-react-app": "^6.0.0",
     "react": "^16.8.6",
