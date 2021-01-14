@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import items from './data';
+//import items from './data';
+import Dynamo from './dynamo';
 //import Client from "./Contentful";
 
 const RoomContext = React.createContext();
 
 export default class RoomProvider extends Component {
+  //rooms was refactored to rooms here, but concept of rooms = rooms is used in larger app
   state = {
     rooms: [],
     sortedRooms: [],
@@ -50,6 +52,8 @@ export default class RoomProvider extends Component {
 
   componentDidMount() {
     // this.getData();
+    this.db = new Dynamo();
+    let items = this.db.queryData('VT');
     let rooms = this.formatData(items);
     let featuredRooms = rooms.filter(house => house.featured === true);
     //
@@ -77,11 +81,13 @@ export default class RoomProvider extends Component {
     });
     return tempItems;
   }
+
   getRoom = slug => {
     let tempRooms = [...this.state.rooms];
     const house = tempRooms.find(house => house.slug === slug);
     return house;
   };
+
   handleChange = event => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -95,6 +101,7 @@ export default class RoomProvider extends Component {
       this.filterRooms
     );
   };
+
   filterRooms = () => {
     let {
       rooms,
@@ -138,6 +145,7 @@ export default class RoomProvider extends Component {
       sortedRooms: tempRooms
     });
   };
+
   render() {
     return (
       <RoomContext.Provider
