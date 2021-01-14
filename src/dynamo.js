@@ -1,13 +1,14 @@
-import * as AWS from 'aws-sdk';
-
-AWS.config.region = 'us-east-1'; // Region
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: 'us-east-1:5f4a6a00-a943-4869-ad45-18141eabbff3',
-        RoleArn: 'arn:aws:iam::433484206610:role/Cognito_DynamoPoolUnauth_Role'
-    });
-
+import * as aws from 'aws-sdk';
 export default class Dynamo {
     constructor() {
+        var AWS = require('aws-sdk');
+        AWS.config.region = 'us-east-1'; // Region
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: 'us-east-1:5f4a6a00-a943-4869-ad45-18141eabbff3',
+            RoleArn: 'arn:aws:iam::433484206610:role/Cognito_DynamoPoolUnauth_Role'
+        });
+        console.log(AWS.config.credentials);
+
         this.dynamodb = new AWS.DynamoDB();
         this.docClient = new AWS.DynamoDB.DocumentClient();
     };
@@ -24,12 +25,11 @@ export default class Dynamo {
                 ":state":state
             }
         };
-
-        this.docClient.query(params, function(err, data) {
+        this.docClient.scan(params, function (err, data) {
             if (err) {
-                console.log('error at query');
+                console.log(err.message);
             } else {
-                return data;
+                return data.Items;
             }
         });
     }
