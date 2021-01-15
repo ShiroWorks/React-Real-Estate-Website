@@ -6,9 +6,8 @@ export default class Dynamo {
             accessKeyID: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
             secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
         });
-        AWS.config.credentials.accessKeyID = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
-        AWS.config.credentials.secretAccessKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
         this.dynamodb = new AWS.DynamoDB();
+        console.log(this.dynamodb.endpoint);
         this.docClient = new AWS.DynamoDB.DocumentClient();
     };
 
@@ -20,10 +19,10 @@ export default class Dynamo {
                 'zpid': '109181542'
             }
         };
-        this.docClient.query(params, function (err, data) {
+        this.docClient.scan(params, function (err, data) {
             if (err) {
                 console.log(err, err.stack);
-                return {}
+                return {};
             } else {
                 console.log('data');
                 return data.Items;
