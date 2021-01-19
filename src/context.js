@@ -26,7 +26,7 @@ export default class RoomProvider extends Component {
   componentDidMount = async () => {
     try {
       this.db = new Dynamo();
-      let response = await this.db.getData();
+      let response = await this.db.data;
       console.log(response);
       let rooms = this.formatData(response.items);
 
