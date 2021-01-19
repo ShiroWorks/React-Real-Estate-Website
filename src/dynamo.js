@@ -1,33 +1,38 @@
-import * as AWS from 'aws-sdk';
+var AWS = require('aws-sdk');
 export default class Dynamo {
-    constructor() {
-        AWS.config.region = process.env.REACT_APP_AWS_REGION; // Region
-        AWS.config.credentials = new AWS.Credentials({
-            accessKeyID: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
-        });
-        AWS.config.credentials.accessKeyID = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
-        AWS.config.credentials.secretAccessKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
-        this.dynamodb = new AWS.DynamoDB();
-        this.docClient = new AWS.DynamoDB.DocumentClient();
-    };
+    
+    constructor() {
+        AWS.config.update({accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+          region: process.env.REACT_APP_AWS_REGION,});
+        this.query();
+    };
 
-    queryData() {
-        //takes a 2-character state code and queries the data for it
-        var params = {
-            TableName : "properties",
-            Key: {
-                'zpid': '109181542'
-            }
+    callback(err, data) {
+        if (err) {
+            throw(err);
+        } else {
+            this.data = data.Items;
+            console.log(this.data);
+        }
+    }
+
+    query() {
+        var dynamodb = new AWS.DynamoDB();
+        this.docClient = new AWS.DynamoDB.DocumentClient();
+        var params = {
+            TableName : "properties"
+        };
+        dynamodb.scan(params, this.callback);
+    }
+
+    getData() {
+        const data = this.data;
+        if (data) {
+            console.log(this.data)
+            return this.data
+        } else {
+            setTimeout(this.getData, 300)
         };
-        this.docClient.query(params, function (err, data) {
-            if (err) {
-                console.log(err, err.stack);
-                return {}
-            } else {
-                console.log('data');
-                return data.Items;
-            }
-        });
     }
 };
