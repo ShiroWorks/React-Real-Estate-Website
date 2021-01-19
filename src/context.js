@@ -26,9 +26,10 @@ export default class RoomProvider extends Component {
   componentDidMount = async () => {
     try {
       this.db = new Dynamo();
-      let response = await this.db.data;
-      console.log(response);
-      let rooms = this.formatData(response.items);
+      await this.db.query();
+      let response = this.db.data;
+      console.log("response",response);
+      let rooms = this.formatData(response);
 
       let featuredRooms = rooms.filter(house => house.featured === true);
       let maxPrice = Math.max(...rooms.map(item => item.price));
@@ -69,8 +70,8 @@ export default class RoomProvider extends Component {
 
   formatData(items) {
     let tempItems = items.map(item => {
-      let id = item.sys.id;
-      let images = item.fields.images.map(image => image.fields.file.url);
+      let id = item.zpid.S;//item.sys.id;
+      let images = [item.imgSrc.S]//item.fields.images.map(image => image.fields.file.url);
 
       let house = { ...item.fields, images, id };
       return house;

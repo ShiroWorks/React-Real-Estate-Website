@@ -5,25 +5,30 @@ export default class Dynamo {
         AWS.config.update({accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
           secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
           region: process.env.REACT_APP_AWS_REGION,});
-        this.query();
+
     };
 
-    callback(err, data) {
-        if (err) {
-            throw(err);
-        } else {
-            this.data = data.Items;
-            console.log(this.data);
-        }
-    }
+    
 
-    query() {
+    async query() {
         var dynamodb = new AWS.DynamoDB();
         this.docClient = new AWS.DynamoDB.DocumentClient();
         var params = {
             TableName : "properties"
         };
-        dynamodb.scan(params, this.callback);
+
+        return new Promise((resolve, reject) => {
+          
+          dynamodb.scan(params, (err, data) => {
+                  if (err) {
+                    reject(err)  // calling `reject` will cause the promise to fail with or without the error passed as an argument
+                    return        // and we don't want to go any further
+                  }
+                  this.data = data.Items;
+                  resolve(data)
+                });
+        })
+        
     }
 
     getData() {
