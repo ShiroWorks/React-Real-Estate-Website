@@ -6,7 +6,6 @@ import Dynamo from './dynamo';
 const RoomContext = React.createContext();
 
 export default class RoomProvider extends Component {
-  //rooms was refactored to rooms here, but concept of rooms = rooms is used in larger app
   state = {
     rooms: [],
     sortedRooms: [],
@@ -24,39 +23,36 @@ export default class RoomProvider extends Component {
     garden: false
   };
 
-  // getData = async () => {
-  //   try {
-  //     let response = await Client.getEntries({
-  //       content_type: "beachResortRoom"
-  //     });
-  //     let rooms = this.formatData(response.items);
+  componentDidMount = async () => {
+    try {
+      this.db = new Dynamo();
+      let response = await this.db.getData();
+      console.log(response);
+      let rooms = this.formatData(response.items);
 
-  //     let featuredRooms = rooms.filter(house => house.featured === true);
-  //     //
-  //     let maxPrice = Math.max(...rooms.map(item => item.price));
-  //     let maxSize = Math.max(...rooms.map(item => item.size));
-  //     this.setState({
-  //       rooms,
-  //       featuredRooms,
-  //       sortedRooms: rooms,
-  //       loading: false,
-  //       //
-  //       price: maxPrice,
-  //       maxPrice,
-  //       maxSize
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      let featuredRooms = rooms.filter(house => house.featured === true);
+      let maxPrice = Math.max(...rooms.map(item => item.price));
+      let maxSize = Math.max(...rooms.map(item => item.size));
+      this.setState({
+        rooms,
+        featuredRooms,
+        sortedRooms: rooms,
+        loading: false,
+        price: maxPrice,
+        maxPrice,
+        maxSize
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  componentDidMount() {
+  /*componentDidMount() {
     // this.getData();
     this.db = new Dynamo();
-    let items = this.db.queryData();
+    let items = this.db.data;
     let rooms = this.formatData(items);
     let featuredRooms = rooms.filter(house => house.featured === true);
-    //
     let maxPrice = Math.max(...rooms.map(item => item.price));
     let maxSize = Math.max(...rooms.map(item => item.size));
     this.setState({
@@ -69,7 +65,7 @@ export default class RoomProvider extends Component {
       maxPrice,
       maxSize
     });
-  }
+  }*/
 
   formatData(items) {
     let tempItems = items.map(item => {
