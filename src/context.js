@@ -47,33 +47,41 @@ export default class RoomProvider extends Component {
     }
   };
 
-  /*componentDidMount() {
-    // this.getData();
-    this.db = new Dynamo();
-    let items = this.db.data;
-    let rooms = this.formatData(items);
-    let featuredRooms = rooms.filter(house => house.featured === true);
-    let maxPrice = Math.max(...rooms.map(item => item.price));
-    let maxSize = Math.max(...rooms.map(item => item.size));
-    this.setState({
-      rooms,
-      featuredRooms,
-      sortedRooms: rooms,
-      loading: false,
-      //
-      price: maxPrice,
-      maxPrice,
-      maxSize
-    });
-  }*/
-
   formatData(items) {
+    /* current data:
+    address: {S: "12 Park Ave, Bronxville, NY 10708"}
+    area: {N: "4871"}
+    bathrooms: {N: "6"}
+    bedrooms: {N: "7"}
+    city: {S: "Bronxville"}
+    hasImage: {BOOL: true}
+    imgSrc: {S: "https://photos.zillowstatic.com/fp/30f2be80a9abcbda6c22db0d5a5b7d10-p_e.jpg"}
+    price: {S: "$3,500,000"}
+    price_to_rent_ratio: {N: "0.23"}
+    real estate provider: {S: "Julia B Fee Sotheby's International Realty"}
+    state: {S: "NY"}
+    title: {S: "House for sale"}
+    url: {S: "https://www.zillow.com/homedetails/12-Park-Ave-Bronxville-NY-10708/131678989_zpid/"}
+    zestimate: {N: "3446572"}
+    zestimate_rent: {N: "8070"}
+    zipcode: {S: "10708"}
+    zpid: {S: "131678989"}*/
     let tempItems = items.map(item => {
-      let id = item.zpid.S;//item.sys.id;
-      let images = [item.imgSrc.S]//item.fields.images.map(image => image.fields.file.url);
-      let name = item.title.S;
-      let slug = id;
-      let type = 'replaceType';
+      //data from the database
+      let address = item.address.S;
+      let area = item.area.N;
+      let bathrooms = item.bathrooms.N;
+      let bedrooms = item.bedrooms.N;
+      let city = item.city.S;
+      let hasImage = item.hasImage.BOOL;
+      let title = item.title.S;
+      let imgSrc = item.imgSrc.S;//item.fields.images.map(image => image.fields.file.url);
+      let statecode = item.state.S;
+      let url = item.url.S;
+      let zipcode = item.zipcode.S;
+      let zpid = item.zpid.S;//item.sys.id;
+      
+      //picks best price to use
       let price;
       let p = item.price.S;
       let z = item.zestimate.N;
@@ -84,15 +92,22 @@ export default class RoomProvider extends Component {
       } else {
         price = -1
       }
-      let size = item.area.N;
-      let capacity = item.bedrooms.N;
-      let garden = false
+
+      //data built into the site
       let airconditioning = false;
-      let featured = true;
+      let capacity = bedrooms;
       let description = 'description'
       let extras = ['extra1','extra2']
+      let featured = true;
+      let garden = false
+      let id = zpid;
+      let images = [imgSrc];
+      let name = city + ", " + statecode;
+      let size = area;
+      let slug = id;
+      let type = title;
 
-      let house = { id, images, name, slug, type, price, size, capacity, garden, airconditioning, featured, description, extras };
+      let house = { id, images, name, slug, type, price, size, capacity, garden, airconditioning, featured, description, extras, address, bathrooms, bedrooms, city, statecode, zipcode, hasImage, url};
       return house;
     });
     return tempItems;

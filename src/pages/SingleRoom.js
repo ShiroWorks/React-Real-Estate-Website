@@ -70,7 +70,7 @@ export default class SingleRoom extends Component {
             </article>
             <article className="info">
               <h3>info</h3>
-              <h6>price : £{price}</h6>
+              <h6>price : ${price}</h6>
               <h6>size : {size} SQM</h6>
               <h6>
                 Rooms :{capacity > 1 ? `${capacity} rooms` : `${capacity} room`}

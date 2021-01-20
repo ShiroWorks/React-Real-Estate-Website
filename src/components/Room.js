@@ -15,7 +15,7 @@ const Room = memo(({ house }) => {
           alt="single house"
         />
         <div className="price-top">
-          <h6>£{price}</h6>
+          <h6>${price}</h6>
           <p>asking price</p>
         </div>
         <Link to={`/rooms/${slug}`} className="btn-primary house-link">
