@@ -30,7 +30,6 @@ export default class RoomProvider extends Component {
       let response = this.db.data;
       console.log("response",response);
       let rooms = this.formatData(response);
-      console.log(rooms);
       let featuredRooms = rooms.filter(house => house.featured === true);
       let maxPrice = Math.max(...rooms.map(item => item.price));
       let maxSize = Math.max(...rooms.map(item => item.size));
@@ -94,10 +93,8 @@ export default class RoomProvider extends Component {
       let extras = ['extra1','extra2']
 
       let house = { id, images, name, slug, type, price, size, capacity, garden, airconditioning, featured, description, extras };
-      console.log(house);
       return house;
     });
-    console.log("ti", tempItems);
     return tempItems;
   }
 
