@@ -30,7 +30,7 @@ export default class RoomProvider extends Component {
       let response = this.db.data;
       console.log("response",response);
       let rooms = this.formatData(response);
-
+      console.log(rooms);
       let featuredRooms = rooms.filter(house => house.featured === true);
       let maxPrice = Math.max(...rooms.map(item => item.price));
       let maxSize = Math.max(...rooms.map(item => item.size));
@@ -72,10 +72,32 @@ export default class RoomProvider extends Component {
     let tempItems = items.map(item => {
       let id = item.zpid.S;//item.sys.id;
       let images = [item.imgSrc.S]//item.fields.images.map(image => image.fields.file.url);
+      let name = item.title.S;
+      let slug = id;
+      let type = 'replaceType';
+      let price;
+      let p = item.price.S;
+      let z = item.zestimate.N;
+      if (p) {
+        price = parseInt(p.replace(/\D/g, "")); //regex $3,400 -> 3400
+      } else if (z) {
+        price = z;
+      } else {
+        price = -1
+      }
+      let size = item.area.N;
+      let capacity = item.bedrooms.N;
+      let garden = false
+      let airconditioning = false;
+      let featured = true;
+      let description = 'description'
+      let extras = ['extra1','extra2']
 
-      let house = { ...item.fields, images, id };
+      let house = { id, images, name, slug, type, price, size, capacity, garden, airconditioning, featured, description, extras };
+      console.log(house);
       return house;
     });
+    console.log("ti", tempItems);
     return tempItems;
   }
 
