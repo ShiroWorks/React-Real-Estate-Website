@@ -19,8 +19,7 @@ export default class RoomProvider extends Component {
     maxPrice: 0,
     minSize: 0,
     maxSize: 0,
-    airconditioning: false,
-    garden: false
+    statecode: 'all'
   };
 
   componentDidMount = async () => {
@@ -28,7 +27,6 @@ export default class RoomProvider extends Component {
       this.db = new Dynamo();
       await this.db.query();
       let response = this.db.data;
-      console.log("response",response);
       let rooms = this.formatData(response);
       let featuredRooms = rooms.filter(house => house.featured === true);
       let maxPrice = Math.max(...rooms.map(item => item.price));
@@ -40,7 +38,8 @@ export default class RoomProvider extends Component {
         loading: false,
         price: maxPrice,
         maxPrice,
-        maxSize
+        maxSize,
+        statecode: 'all'
       });
     } catch (error) {
       console.log(error);
@@ -88,26 +87,31 @@ export default class RoomProvider extends Component {
       if (p) {
         price = parseInt(p.replace(/\D/g, "")); //regex $3,400 -> 3400
       } else if (z) {
-        price = z;
+        price = parseInt(z);
       } else {
         price = -1
       }
 
+      //size protection
+      let size;
+      if (area) {
+        size = area;
+      } else {
+        size = 0;
+      }
+
       //data built into the site
-      let airconditioning = false;
       let capacity = bedrooms;
       let description = 'description'
       let extras = ['extra1','extra2']
       let featured = true;
-      let garden = false
       let id = zpid;
       let images = [imgSrc];
       let name = city + ", " + statecode;
-      let size = area;
       let slug = id;
       let type = title;
 
-      let house = { id, images, name, slug, type, price, size, capacity, garden, airconditioning, featured, description, extras, address, bathrooms, bedrooms, city, statecode, zipcode, hasImage, url};
+      let house = { id, images, name, slug, type, price, size, capacity, featured, description, extras, address, bathrooms, bedrooms, city, statecode, zipcode, hasImage, url};
       return house;
     });
     return tempItems;
@@ -141,15 +145,9 @@ export default class RoomProvider extends Component {
       price,
       minSize,
       maxSize,
-      airconditioning,
-      garden
+      statecode
     } = this.state;
-
     let tempRooms = [...rooms];
-    // transform values
-    // get capacity
-    capacity = parseInt(capacity);
-    price = parseInt(price);
     // filter by type
     if (type !== 'all') {
       tempRooms = tempRooms.filter(house => house.type === type);
@@ -164,13 +162,9 @@ export default class RoomProvider extends Component {
     tempRooms = tempRooms.filter(
       house => house.size >= minSize && house.size <= maxSize
     );
-    //filter by airconditioning
-    if (airconditioning) {
-      tempRooms = tempRooms.filter(house => house.airconditioning === true);
-    }
-    //filter by garden
-    if (garden) {
-      tempRooms = tempRooms.filter(house => house.garden === true);
+    //filter by 2-digit state code
+    if (statecode !== 'all') {
+      tempRooms = tempRooms.filter(house => house.statecode === statecode);
     }
     this.setState({
       sortedRooms: tempRooms

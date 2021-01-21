@@ -19,10 +19,20 @@ const RoomsFilter = ({ rooms }) => {
     maxPrice,
     minSize,
     maxSize,
-    airconditioning,
-    garden
+    statecode
   } = context;
 
+
+  // get unique states
+  let statecodes = getUnique(rooms, 'statecode');
+  // add all
+  statecodes = ['all', ...statecodes];
+  // map to jsx
+  statecodes = statecodes.map((item, index) => (
+    <option key={index} value={item}>
+      {item}
+    </option>
+  ));
   // get unique types
   let types = getUnique(rooms, 'type');
   // add all
@@ -44,6 +54,20 @@ const RoomsFilter = ({ rooms }) => {
     <section className="filter-container">
       <Title title="search rooms" />
       <form className="filter-form">
+        {/* select state */}
+        <div className="form-group">
+          <label htmlFor="statecode">state</label>
+          <select
+            name="statecode"
+            id="statecode"
+            onChange={handleChange}
+            className="form-control"
+            value={statecode}
+          >
+            {statecodes}
+          </select>
+        </div>
+        {/* end of select state */}
         {/* select type */}
         <div className="form-group">
           <label htmlFor="type">house type</label>
@@ -108,7 +132,7 @@ const RoomsFilter = ({ rooms }) => {
           </div>
         </div>
         {/* end of select type */}
-        {/* extras */}
+        {/* extras
         <div className="form-group">
           <div className="single-extra">
             <input
@@ -130,7 +154,7 @@ const RoomsFilter = ({ rooms }) => {
             <label htmlFor="airconditioning">garden</label>
           </div>
         </div>
-        {/* end of extras type */}
+        end of extras type */}
       </form>
     </section>
   );
