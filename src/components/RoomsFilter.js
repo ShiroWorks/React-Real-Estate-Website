@@ -43,8 +43,11 @@ const RoomsFilter = ({ rooms }) => {
       {item}
     </option>
   ));
-  // get unique capacity
-  let people = getUnique(rooms, 'capacity');
+  // get maximum capacity
+  let maxCap = Math.max(...rooms.map(item => item.capacity));
+  console.log(maxCap)
+  //create an ordered array from minimum to maximum
+  let people = [...Array(maxCap+1).keys()].slice(1)
   people = people.map((item, index) => (
     <option key={index} value={item}>
       {item}
@@ -84,7 +87,7 @@ const RoomsFilter = ({ rooms }) => {
         {/* end of select type */}
         {/* guests  */}
         <div className="form-group">
-          <label htmlFor="capacity">Rooms</label>
+          <label htmlFor="capacity">bedrooms</label>
           <select
             name="capacity"
             id="capacity"
@@ -98,7 +101,7 @@ const RoomsFilter = ({ rooms }) => {
         {/* end of guests */}
         {/* house price */}
         <div className="form-group">
-          <label htmlFor="price">house price ${price}</label>
+          <label htmlFor="price">max price: ${price}</label>
           <input
             type="range"
             name="price"
@@ -113,7 +116,7 @@ const RoomsFilter = ({ rooms }) => {
         {/* end of house price*/}
         {/* size */}
         <div className="form-group">
-          <label htmlFor="price">house size </label>
+          <label htmlFor="price">house area</label>
           <div className="size-inputs">
             <input
               type="number"

@@ -97,11 +97,17 @@ export default class RoomProvider extends Component {
       if (area) {
         size = area;
       } else {
-        size = 0;
+        size = -1;
+      }
+      //capacity protection
+      let capacity;
+      if (bedrooms) {
+        capacity = bedrooms;
+      } else {
+        capacity = 1;
       }
 
       //data built into the site
-      let capacity = bedrooms;
       let description = 'description'
       let extras = ['extra1','extra2']
       let featured = true;
@@ -154,7 +160,7 @@ export default class RoomProvider extends Component {
     }
     // filter by capacity
     if (capacity !== 1) {
-      tempRooms = tempRooms.filter(house => house.capacity >= capacity);
+      tempRooms = tempRooms.filter(house => house.capacity === capacity);
     }
     // filter by price
     tempRooms = tempRooms.filter(house => house.price <= price);
