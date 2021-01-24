@@ -6,6 +6,11 @@ import { memo } from 'react';
 const Room = memo(({ house }) => {
   const { name, slug, images, price } = house;
   // console.log(name);
+    /*
+    <div className="price-top">
+      <h6>${price}</h6>
+      <p>asking price</p>
+    </div> */
   return (
     <article className="house">
       <div className="img-container">
@@ -14,12 +19,8 @@ const Room = memo(({ house }) => {
           src={images[0] || defaultImg}
           alt="single house"
         />
-        <div className="price-top">
-          <h6>${price}</h6>
-          <p>asking price</p>
-        </div>
         <Link to={`/rooms/${slug}`} className="btn-primary house-link">
-          features
+          details
         </Link>
       </div>
       <p className="house-info">{name}</p>

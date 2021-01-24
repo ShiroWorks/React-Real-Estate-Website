@@ -12,9 +12,10 @@ export default class FeaturedRooms extends Component {
     rooms = rooms.map(house => {
       return <Room key={house.id} house={house} />;
     });
+    
     return (
       <section className="featured-rooms">
-        <Title title="featured rooms" />
+        <Title title="featured sales" />
         <div className="featured-rooms-center">
           {loading ? <Loading /> : rooms}
         </div>

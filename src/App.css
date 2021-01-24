@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 :root {
-  --primaryColor: #af9a7d;
-  --mainWhite: #fff;
+  --primaryColor: #f4f1ee;
+  --mainWhite: #f4f1ee;
   --offWhite: #f7f7f7;
   --mainBlack: #222;
   --mainGrey: #ececec;
@@ -219,13 +219,13 @@ h6 {
 /* Title */
 .section-title {
   text-align: center;
-  margin-bottom: 4rem;
 }
 .section-title h4 {
-  font-size: 2rem;
-  letter-spacing: var(--mainSpacing);
-  text-transform: capitalize;
-  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  font-weight: lighter;
 }
 .section-title div {
   width: 5rem;
@@ -280,7 +280,7 @@ h6 {
 /* featured rooms */
 
 .featured-rooms {
-  padding: 5rem 0;
+  padding: 1.5rem 0;
 }
 .featured-rooms-center {
   width: 80vw;
@@ -305,7 +305,7 @@ h6 {
 /* end pf featured rooms */
 /* house */
 .house {
-  box-shadow: var(--lightShadow);
+  box-shadow: none; /* was var(--mainShadow) */
   transition: var(--mainTransition);
 }
 .house:hover {
@@ -317,7 +317,7 @@ h6 {
 }
 .img-container img {
   width: 100%;
-  height: 11rem;
+  height: 18rem;
   display: block;
   transition: var(--mainTransition);
 }
@@ -359,12 +359,12 @@ h6 {
   transform: translate(-50%, -50%) scale(1);
 }
 .house-info {
-  background: var(--darkGrey);
+  background: transparent;
   text-transform: capitalize;
   padding: 0.5rem 0;
   text-align: center;
   font-weight: 700;
-  letter-spacing: var(--mainSpacing);
+  
 }
 /* end of house  */
 /* single house*/

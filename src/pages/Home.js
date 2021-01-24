@@ -7,17 +7,17 @@ import FeaturedRooms from '../components/FeaturedRooms';
 const home = () => {
   return (
     <>
-      <Hero>
+      <FeaturedRooms />
+    </>
+  );
+    /*<Hero>
         <Banner title="just buy a house" subtitle="rooms starting at $145,000">
           <Link to="/rooms" className="btn-primary">
             our houses
           </Link>
         </Banner>
       </Hero>
-      <Services />
-      <FeaturedRooms />
-    </>
-  );
+      <Services />*/
 };
 
 export default home;
