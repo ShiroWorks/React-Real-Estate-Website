@@ -14,13 +14,34 @@
   --mainSpacing: 3px;
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
   --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+  --mainSerif: Georgia, serif; 
+  --mainSansSerif: 'ObjectivLight', serif;
+  --mainSansSerifBold: 'ObjectivBold', serif;
+  --mainSansSerifItalic: 'ObjectivLightItalic', serif;
 }
 /* globals */
+ @font-face {
+  font-family: ObjectivBold;
+  src: url('./fonts/ObjektivMk1_Trial_Bd.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: ObjectivLightItalic;
+  src: url('./fonts/ObjektivMk1_Trial_LtIt.ttf');
+  font-weight: normal;
+	font-style: italic;
+}
+@font-face {
+  font-family: ObjectivLight;
+  src: url('./fonts/ObjektivMk1_Trial_Lt.ttf');
+  font-weight: normal;
+}
+
 body {
   padding-top: 66px;
   color: var(--mainBlack);
   background: var(--mainWhite);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--mainSansSerif);
   line-height: 1.4;
 }
 h1 {
@@ -317,7 +338,7 @@ h6 {
 }
 .img-container img {
   width: 100%;
-  height: 18rem;
+  height: 15rem;
   display: block;
   transition: var(--mainTransition);
 }
@@ -361,11 +382,20 @@ h6 {
 .house-info {
   background: transparent;
   text-transform: capitalize;
-  padding: 0.5rem 0;
-  text-align: center;
-  font-weight: 700;
-  
+  padding-top: .25rem;
+  width: 100%;
 }
+.house-info-left {
+  text-align: left;
+  font-family: var(--mainSerif);
+  font-size: 13pt;
+}
+.house-info-right {
+  text-align: right;
+  font-family: var(--mainSansSerifBold);
+  font-size: 11pt;
+}
+
 /* end of house  */
 /* single house*/
 

@@ -3,8 +3,17 @@ import { Link } from 'react-router-dom';
 import defaultImg from '../images/house-1.jpg';
 import PropTypes from 'prop-types';
 import { memo } from 'react';
+
+var formatter = new Intl.NumberFormat(undefined, {
+  style: 'currency',
+  currency: 'USD',
+  currencyDisplay: 'narrowSymbol',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0
+});
+
 const Room = memo(({ house }) => {
-  const { name, slug, images, price } = house;
+  const { slug, street, city, statecode, images, price, type } = house;
   // console.log(name);
     /*
     <div className="price-top">
@@ -23,7 +32,16 @@ const Room = memo(({ house }) => {
           details
         </Link>
       </div>
-      <p className="house-info">{name}</p>
+      <table className="house-info">
+        <tr>
+          <td className="house-info-left">{street}</td>
+          <td className="house-info-right">{formatter.format(price)}</td>
+        </tr>
+        <tr>
+          <td className="house-info-left">{city + ", " + statecode}</td>
+          <td className="house-info-right">{type}</td>
+        </tr>
+      </table>
     </article>
   );
 });

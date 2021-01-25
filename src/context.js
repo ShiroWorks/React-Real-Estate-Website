@@ -57,8 +57,9 @@ export default class RoomProvider extends Component {
     imgSrc: {S: "https://photos.zillowstatic.com/fp/30f2be80a9abcbda6c22db0d5a5b7d10-p_e.jpg"}
     price: {S: "$3,500,000"}
     price_to_rent_ratio: {N: "0.23"}
-    real estate provider: {S: "Julia B Fee Sotheby's International Realty"}
+    broker: {S: "Julia B Fee Sotheby's International Realty"}
     state: {S: "NY"}
+    street: {S: "63-65 Loomis Ave"}
     title: {S: "House for sale"}
     url: {S: "https://www.zillow.com/homedetails/12-Park-Ave-Bronxville-NY-10708/131678989_zpid/"}
     zestimate: {N: "3446572"}
@@ -71,11 +72,13 @@ export default class RoomProvider extends Component {
       let area = item.area.N;
       let bathrooms = item.bathrooms.N;
       let bedrooms = item.bedrooms.N;
+      let broker = item.broker.S;
       let city = item.city.S;
       let hasImage = item.hasImage.BOOL;
       let title = item.title.S;
       let imgSrc = item.imgSrc.S;//item.fields.images.map(image => image.fields.file.url);
       let statecode = item.state.S;
+      let street = item.street.S;
       let url = item.url.S;
       let zipcode = item.zipcode.S;
       let zpid = item.zpid.S;//item.sys.id;
@@ -113,11 +116,12 @@ export default class RoomProvider extends Component {
       let featured = true;
       let id = zpid;
       let images = [imgSrc];
+      //name is redundant but still used
       let name = city + ", " + statecode;
       let slug = id;
       let type = title;
 
-      let house = { id, images, name, slug, type, price, size, capacity, featured, description, extras, address, bathrooms, bedrooms, city, statecode, zipcode, hasImage, url};
+      let house = { id, images, name, slug, type, price, size, capacity, featured, description, extras, address, bathrooms, bedrooms, city, statecode, street,zipcode, hasImage, url, broker};
       return house;
     });
     return tempItems;
