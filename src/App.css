@@ -11,7 +11,7 @@
   --mainGrey: #ececec;
   --darkGrey: #cfcfcf;
   --mainTransition: all 0.3s linear;
-  --mainSpacing: 3px;
+  --mainSpacing: 1px;
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
   --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
   --mainSerif: 'GTSectra', serif; 
@@ -136,10 +136,6 @@ h6 {
   background: var(--offWhite);
   z-index: 1;
 }
-.nav-header {
-  display: flex;
-  justify-content: space-between;
-}
 /* .houseImg {
   background: center/cover no-repeat;
 } */
@@ -162,16 +158,16 @@ h6 {
 .nav-links a {
   display: block;
   text-decoration: none;
-  padding: 1rem 0;
   color: var(--mainBlack);
   transition: var(--mainTransition);
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
+  text-transform: uppercase;
   letter-spacing: var(--mainSpacing);
+  padding: 1rem 10rem;
 }
 .nav-links a:hover {
-  color: var(--primaryColor);
 }
 
 .show-nav {
@@ -182,18 +178,17 @@ h6 {
     display: none;
   }
   .nav-center {
-    max-width: 1170px;
     margin: 0 auto;
     display: flex;
   }
   .nav-links {
     height: auto;
     display: flex;
-    margin-left: 4rem;
+    margin: 0 1.5rem;
   }
   .nav-links a {
     margin: 0 1rem;
-    padding: 0.5rem 0;
+    padding: .5rem 0;
   }
 }
 /* end of navbar */
@@ -259,7 +254,6 @@ h6 {
   font-size: 1rem;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  margin-top: 1rem;
   font-weight: lighter;
 }
 .section-title div {
@@ -396,13 +390,12 @@ h6 {
 .house-info {
   background: transparent;
   text-transform: capitalize;
-  padding-top: .5rem;
+  padding-top: 1rem;
   width: 100%;
 }
 .house-info-left {
   text-align: left;
-  font-family: var(--mainSerif);
-  font-size: 13pt;
+  font-size: 11pt;
 }
 .house-info-right {
   text-align: right;
@@ -494,14 +487,15 @@ h6 {
   width: 80vw;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   grid-row-gap: 2rem;
-  grid-column-gap: 30px;
+  grid-column-gap: 40px;
 }
 
 @media screen and (min-width: 776px) {
   .roomslist-center {
     width: 90vw;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   }
 }
 @media screen and (min-width: 992px) {
@@ -513,7 +507,7 @@ h6 {
 /* end of roomlist */
 /*  rooms fitler*/
 .filter-container {
-  padding: 5rem 0;
+  padding: 2.5rem 0 0;
 }
 .filter-form {
   width: 60vw;
@@ -528,7 +522,6 @@ h6 {
 }
 .form-group label {
   display: block;
-  letter-spacing: var(--mainSpacing);
   margin-bottom: 0.5rem;
 }
 .form-control {
@@ -545,6 +538,7 @@ h6 {
   border: 1px solid var(--mainBlack);
   border-radius: 0.3rem;
   margin-right: 0.3rem;
+  background: transparent;
 }
 .single-extra label {
   display: inline-block;

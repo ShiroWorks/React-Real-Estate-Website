@@ -6,16 +6,17 @@ import RoomsContainer from '../components/RoomsContainer';
 const Rooms = () => {
   return (
     <>
-      <Hero hero="roomsHero">
+      <RoomsContainer />
+    </>
+  );
+};
+
+/*      <Hero hero="roomsHero">
         <Banner title="our rooms">
           <Link to="/" className="btn-primary">
             return home
           </Link>
         </Banner>
-      </Hero>
-      <RoomsContainer />
-    </>
-  );
-};
+      </Hero> */
 
 export default Rooms;

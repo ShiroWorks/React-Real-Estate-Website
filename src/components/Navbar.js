@@ -12,31 +12,31 @@ export default class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <div className="nav-center">
-          <div className="nav-header">
-            <Link to="/">
-              <img className="saleLogo" src={logo} alt="House Sale" />
-            </Link>
-            <button
-              type="button"
-              className="nav-btn"
-              onClick={this.handleToggle}
-            >
-              <FaAlignRight className="nav-icon" />
-            </button>
-          </div>
-          <ul
-            className={this.state.isOpen ? 'nav-links show-nav' : 'nav-links'}
-          >
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/rooms">Houses</Link>
-            </li>
-          </ul>
-        </div>
+        <ul
+          className={this.state.isOpen ? 'nav-links show-nav' : 'nav-links'}
+        >
+          <li className="nav-left">
+            <Link to="/">Featured</Link>
+          </li>
+          <li className="nav-leftmost">
+            <Link to="/rooms">Search</Link>
+          </li>
+          <li className="nav-center"></li>
+          <li className="nav-right">
+            <Link to="/">Journal</Link>
+          </li>
+        </ul>
       </nav>
     );
   }
+  /* <Link to="/">
+      <img className="saleLogo" src={logo} alt="House Sale" />
+    </Link>
+    <button
+      type="button"
+      className="nav-btn"
+      onClick={this.handleToggle}
+    >
+      <FaAlignRight className="nav-icon" />
+    </button>*/
 }
