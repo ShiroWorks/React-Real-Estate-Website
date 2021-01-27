@@ -37,6 +37,7 @@
   src: url('./fonts/ObjektivMk1_Trial_Lt.ttf');
   font-weight: normal;
 }
+/*! we currently have no license for GTSectra (or Objektiv it looks like?) and so they are mockup only. Objektiv fonts taken from other foil site.  */
 @font-face {
   font-family: GTSectra;
   src: url('./fonts/GT-Sectra-Regular-Trial.woff2') format('woff2')
