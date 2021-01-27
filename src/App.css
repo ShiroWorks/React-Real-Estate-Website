@@ -14,10 +14,11 @@
   --mainSpacing: 3px;
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
   --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
-  --mainSerif: Georgia, serif; 
-  --mainSansSerif: 'ObjectivLight', serif;
-  --mainSansSerifBold: 'ObjectivBold', serif;
-  --mainSansSerifItalic: 'ObjectivLightItalic', serif;
+  --mainSerif: 'GTSectra', serif; 
+  --mainSerifItalic: 'GTSectraItalic', serif;
+  --mainSansSerif: 'ObjectivLight', sans-serif;
+  --mainSansSerifBold: 'ObjectivBold', sans-serif;
+  --mainSansSerifItalic: 'ObjectivLightItalic', sans-serif;
 }
 /* globals */
  @font-face {
@@ -34,6 +35,18 @@
 @font-face {
   font-family: ObjectivLight;
   src: url('./fonts/ObjektivMk1_Trial_Lt.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: GTSectra;
+  src: url('./fonts/GT-Sectra-Regular-Trial.woff2') format('woff2')
+       url('./fonts/GT-Sectra-Regular-Trial.otf') format('otf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: GTSectraItalic;
+  src: url('./fonts/GT-Sectra-Regular-Italic-Trial.woff2') format('woff2')
+       url('./fonts/GT-Sectra-Regular-Italic-Trial.otf') format('otf');
   font-weight: normal;
 }
 
@@ -382,7 +395,7 @@ h6 {
 .house-info {
   background: transparent;
   text-transform: capitalize;
-  padding-top: .25rem;
+  padding-top: .5rem;
   width: 100%;
 }
 .house-info-left {
