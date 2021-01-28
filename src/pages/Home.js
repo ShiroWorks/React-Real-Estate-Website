@@ -4,15 +4,6 @@ import Hero from '../components/Hero';
 import VidBanner from '../components/VidBanner';
 import Services from '../components/Services';
 import FeaturedRooms from '../components/FeaturedRooms';
-
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
-  };
-}
-
 const home = () => {
   return (
     <>
