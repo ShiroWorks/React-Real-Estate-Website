@@ -92,17 +92,17 @@ h6 {
   display: inline-block;
   text-decoration: none;
   letter-spacing: var(--mainSpacing);
-  color: var(--mainBlack);
-  background: var(--primaryColor);
+  color: var(--primaryColor);
+  background: transparent;
   padding: 0.4rem 0.9rem;
-  border: 3px solid var(--primaryColor);
+  border: none;
   transition: var(--mainTransition);
   text-transform: uppercase;
   cursor: pointer;
 }
 .btn-primary:hover {
   background: transparent;
-  color: var(--primaryColor);
+  border: 3px solid var(--primaryColor);
 }
 .loading {
   text-transform: capitalize;
@@ -196,13 +196,11 @@ h6 {
 .defaultHero,
 .roomsHero {
   min-height: calc(100vh - 66px);
-  background: url('./images/defaultBcg.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .roomsHero {
-  background-image: url('./images/house-2.jpg');
   min-height: 60vh;
 }
 /* End of Hero */
@@ -246,6 +244,8 @@ h6 {
   }
 }
 /* End of Banner */
+/* Video Banner */
+/* End of Video Banner */
 /* Title */
 .section-title {
   text-align: center;

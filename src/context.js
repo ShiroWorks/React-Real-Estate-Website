@@ -179,6 +179,7 @@ export default class RoomProvider extends Component {
     this.setState({
       sortedRooms: tempRooms
     });
+    
   };
 
   render() {
