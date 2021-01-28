@@ -102,7 +102,7 @@ h6 {
 }
 .btn-primary:hover {
   background: transparent;
-  border: 3px solid var(--primaryColor);
+  border: 1px solid var(--primaryColor);
 }
 .loading {
   text-transform: capitalize;
