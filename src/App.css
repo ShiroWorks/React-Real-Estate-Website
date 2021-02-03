@@ -433,15 +433,13 @@ h6 {
 }
 .desc h3 {
   text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
 }
-.desc p {
-  line-height: 1.5;
+.desc p, .info p, .desc a {
+  line-height: 2;
 }
 .info h3,
 .info h6 {
   text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
 }
 
 .info h6 {
@@ -453,7 +451,6 @@ h6 {
 }
 .house-extras h6 {
   text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
 }
 .extras {
   list-style-type: none;

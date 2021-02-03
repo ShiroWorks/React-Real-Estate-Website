@@ -35,15 +35,7 @@ export default class SingleRoom extends Component {
       );
     }
     const {
-      name,
-      description,
-      capacity,
-      size,
-      price,
-      extras,
-      airconditioning,
-      garden,
-      images
+      images, name, type, price, size, featured, bathrooms, bedrooms, city, statecode, street,zipcode, url, broker
     } = house;
     const [main, ...defaultImages] = images;
     console.log(defaultImages);
@@ -51,7 +43,7 @@ export default class SingleRoom extends Component {
     return (
       <>
         <StyledHero img={images[0] || this.state.defaultBcg}>
-          <Banner title={`${name} house`}>
+          <Banner title={`${city}, ${statecode}`}>
             <Link to="/rooms" className="btn-primary">
               back to rooms
             </Link>
@@ -65,30 +57,33 @@ export default class SingleRoom extends Component {
           </div>
           <div className="single-house-info">
             <article className="desc">
-              <h3>details</h3>
-              <p>{description}</p>
+              <h3>address</h3>
+              <p>{street}</p>
+              <p>{city}, {statecode} {zipcode}</p>
+              <a href={`${url}`}>See on Zillow</a>
             </article>
             <article className="info">
               <h3>info</h3>
-              <h6>price : ${price}</h6>
-              <h6>size : {size} SQM</h6>
-              <h6>
-                Rooms :{capacity > 1 ? `${capacity} rooms` : `${capacity} room`}
-              </h6>
-              <h6>{garden ? 'with garden' : 'no garden'}</h6>
-              <h6>{airconditioning && 'airconditioning included'}</h6>
+              <p>Price: {price !== undefined ? `$${price}` : `Not Listed`}</p>
+              <p>Size: {size !== -1 ? `${size} sqft` : `Not listed`}</p>
+              <p>Bedrooms: {bedrooms !== undefined ? bedrooms : ` N/A`}</p>
+              <p>Bathrooms: {bathrooms !== undefined ? bathrooms : ` N/A`}</p>
+              <p>Broker: {broker !== undefined ? broker : `Not Listed`}</p>
             </article>
           </div>
         </section>
-        <section className="house-extras">
+      </>
+    );
+              /*<h6>{garden ? 'with garden' : 'no garden'}</h6>
+              <h6>{airconditioning && 'airconditioning included'}</h6>
+              
+              <section className="house-extras">
           <h6>extras </h6>
           <ul className="extras">
             {extras.map((item, index) => (
               <li key={index}>- {item}</li>
             ))}
           </ul>
-        </section>
-      </>
-    );
+        </section>*/
   }
 }
