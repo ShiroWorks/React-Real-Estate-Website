@@ -33,14 +33,16 @@ const Room = memo(({ house }) => {
         </Link>
       </div>
       <table className="house-info">
-        <tr>
-          <td className="house-info-left">{street}</td>
-          <td className="house-info-right">{formatter.format(price)}</td>
-        </tr>
-        <tr>
-          <td className="house-info-left">{city + ", " + statecode}</td>
-          <td className="house-info-right">{type}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td className="house-info-left">{street}</td>
+            <td className="house-info-right">{formatter.format(price)}</td>
+          </tr>
+          <tr>
+            <td className="house-info-left">{city + ", " + statecode}</td>
+            <td className="house-info-right">{type}</td>
+          </tr>
+        </tbody>
       </table>
     </article>
   );

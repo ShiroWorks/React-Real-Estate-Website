@@ -112,16 +112,17 @@ export default class RoomProvider extends Component {
 
       //data built into the site
       let description = 'description'
-      let extras = ['extra1','extra2']
-      let featured = true;
       let id = zpid;
+      let featured = true;
+      //let featured = featuredList.includes(id);
+      
       let images = [imgSrc];
       //name is redundant but still used
       let name = city + ", " + statecode;
       let slug = id;
       let type = title;
 
-      let house = { id, images, name, slug, type, price, size, capacity, featured, description, extras, address, bathrooms, bedrooms, city, statecode, street,zipcode, hasImage, url, broker};
+      let house = { id, images, name, slug, type, price, size, capacity, featured, description, address, bathrooms, bedrooms, city, statecode, street,zipcode, hasImage, url, broker};
       return house;
     });
     return tempItems;
