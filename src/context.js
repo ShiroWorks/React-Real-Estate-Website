@@ -25,9 +25,11 @@ export default class RoomProvider extends Component {
   componentDidMount = async () => {
     try {
       this.db = new Dynamo();
-      await this.db.query();
+      await this.db.query('properties');
       let response = this.db.data;
-      let rooms = this.formatData(response);
+      await this.db.query('featured');
+      let featured = this.db.data.map(item => item.zpid.S);
+      let rooms = this.formatData(response, featured);
       let featuredRooms = rooms.filter(house => house.featured === true);
       let maxPrice = Math.max(...rooms.map(item => item.price));
       let maxSize = Math.max(...rooms.map(item => item.size));
@@ -46,7 +48,7 @@ export default class RoomProvider extends Component {
     }
   };
 
-  formatData(items) {
+  formatData(items, featuredList) {
     /* current data:
     address: {S: "12 Park Ave, Bronxville, NY 10708"}
     area: {N: "4871"}
@@ -81,7 +83,16 @@ export default class RoomProvider extends Component {
       let street = item.street.S;
       let url = item.url.S;
       let zipcode = item.zipcode.S;
-      let zpid = item.zpid.S;//item.sys.id;
+      let zpid = item.zpid.S; //item.sys.id;
+
+      //data built into the site
+      let id = zpid;
+      let featured = featuredList.includes(id);
+      let images = [imgSrc];
+      //name is redundant but still used
+      let name = city + ", " + statecode;
+      let slug = id;
+      let type = title;
       
       //picks best price to use
       let price;
@@ -110,19 +121,8 @@ export default class RoomProvider extends Component {
         capacity = 1;
       }
 
-      //data built into the site
-      let description = 'description'
-      let id = zpid;
-      let featured = true;
-      //let featured = featuredList.includes(id);
-      
-      let images = [imgSrc];
-      //name is redundant but still used
-      let name = city + ", " + statecode;
-      let slug = id;
-      let type = title;
 
-      let house = { id, images, name, slug, type, price, size, capacity, featured, description, address, bathrooms, bedrooms, city, statecode, street,zipcode, hasImage, url, broker};
+      let house = { id, images, name, slug, type, price, size, capacity, featured, address, bathrooms, bedrooms, city, statecode, street,zipcode, hasImage, url, broker};
       return house;
     });
     return tempItems;
