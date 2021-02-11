@@ -12,6 +12,8 @@ import Navbar from './components/Navbar';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
+  const loc = window.location.search;
+  console.log(loc);
   return (
     <>
       <Navbar />
@@ -20,6 +22,7 @@ function App() {
         <Route exact path="/rooms/" component={Rooms} />
         <Route exact path="/rooms/:slug" component={SingleRoom} />
         <Route component={Error} />
+        this.props.match.params.id
       </Switch>
     </>
   );

@@ -45,9 +45,19 @@ const RoomsFilter = ({ rooms }) => {
   ));
   // get maximum capacity
   let maxCap = Math.max(...rooms.map(item => item.capacity));
-  console.log(maxCap)
   //create an ordered array from minimum to maximum
-  let people = [...Array(maxCap+1).keys()].slice(1)
+  let p;
+  if (maxCap !== -Infinity){
+    p = [...Array(maxCap+1).keys()]
+  } else {
+    p = []
+  }
+  let people;
+  if (p.length > 0) {
+    people = p.slice(1)
+  } else {
+    people = []
+  }
   people = people.map((item, index) => (
     <option key={index} value={item}>
       {item}

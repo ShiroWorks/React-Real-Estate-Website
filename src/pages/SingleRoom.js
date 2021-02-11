@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import defaultBcg from '../images/house-1.jpg';
-import Hero from '../components/Hero';
 import Banner from '../components/Banner';
 import { Link } from 'react-router-dom';
 import { RoomContext } from '../context';
+import FeaturedButton from '../components/FeaturedButton';
 
 import StyledHero from '../components/StyledHero';
 export default class SingleRoom extends Component {
@@ -35,10 +35,9 @@ export default class SingleRoom extends Component {
       );
     }
     const {
-      images, name, type, price, size, featured, bathrooms, bedrooms, city, statecode, street,zipcode, url, broker
+      id, images, name, type, price, size, featured, bathrooms, bedrooms, city, statecode, street, zipcode, url, broker
     } = house;
     const [main, ...defaultImages] = images;
-    console.log(defaultImages);
 
     return (
       <>
@@ -70,6 +69,9 @@ export default class SingleRoom extends Component {
               <p>Bathrooms: {bathrooms !== undefined ? bathrooms : ` N/A`}</p>
               <p>Broker: {broker !== undefined ? broker : `Not Listed`}</p>
             </article>
+          </div>
+          <div>
+            <FeaturedButton zpid={id}/>
           </div>
         </section>
       </>

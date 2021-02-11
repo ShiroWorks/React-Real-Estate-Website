@@ -6,7 +6,7 @@ export default class Dynamo {
           secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
           region: process.env.REACT_APP_AWS_REGION,});
         this.db = new AWS.DynamoDB();
-        this.docClient = this.db.docClient();
+        this.docClient = new AWS.DynamoDB.DocumentClient();
     };    
 
     async query(TableName) {
@@ -49,7 +49,7 @@ export default class Dynamo {
             "zpid":zpid
         }
       };
-      this.docClient.put(params, function(err) {
+      this.docClient.delete(params, function(err) {
           if (err) {
               console.log(err);
           }
@@ -59,7 +59,6 @@ export default class Dynamo {
     getData() {
         const data = this.data;
         if (data) {
-            console.log(this.data)
             return this.data
         } else {
             setTimeout(this.getData, 300)
