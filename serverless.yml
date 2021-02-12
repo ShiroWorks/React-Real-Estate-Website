@@ -1,0 +1,25 @@
+service: React-Real-Estate-Website
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  region: us-east-1
+
+package:
+  individually: false
+  excludeDevDependencies: false
+  exclude:
+    - package.json
+    - package-log.json
+    - node_modules/**
+
+
+functions:
+  site:
+    handler: handler.site
+    events:
+      - http:
+          path: site
+          method: get

@@ -19,6 +19,7 @@
 .env.production.local
 .env
 .eslintcache
+/.serverless
 
 npm-debug.log*
 yarn-debug.log*
