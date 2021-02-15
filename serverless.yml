@@ -6,7 +6,12 @@ provider:
   runtime: nodejs12.x
   stage: dev
   lambdaHashingVersion: 20201221
-  region: us-east-1
+  region: ${env:REACT_APP_AWS_REGION}
+  environment:
+    AWS_ACCESS_KEY_ID: ${env:REACT_APP_AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${env:REACT_APP_AWS_SECRET_ACCESS_KEY}
+    
+    
 
 package:
   individually: false
@@ -24,3 +29,7 @@ functions:
       - http:
           path: /
           method: ANY
+
+
+plugins:
+  - serverless-dotenv-plugin
