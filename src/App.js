@@ -11,6 +11,8 @@ import Navbar from './components/Navbar';
 
 import { Switch, Route } from 'react-router-dom';
 
+const sls = require("serverless-http");
+
 function App() {
   const loc = window.location.search;
   console.log(loc);
@@ -28,4 +30,5 @@ function App() {
   );
 }
 
+module.exports.handler = sls(App);
 export default App;

@@ -4,6 +4,7 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: dev
   lambdaHashingVersion: 20201221
   region: us-east-1
 
@@ -18,8 +19,8 @@ package:
 
 functions:
   site:
-    handler: handler.site
+    handler: ./src/App.handler
     events:
       - http:
-          path: site
-          method: get
+          path: /
+          method: ANY
