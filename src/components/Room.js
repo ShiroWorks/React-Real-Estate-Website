@@ -4,6 +4,8 @@ import defaultImg from '../images/house-1.jpg';
 import PropTypes from 'prop-types';
 import { memo } from 'react';
 
+const params = new URLSearchParams(window.location.search);
+
 var formatter = new Intl.NumberFormat(undefined, {
   style: 'currency',
   currency: 'USD',
@@ -28,7 +30,7 @@ const Room = memo(({ house }) => {
           src={images[0] || defaultImg}
           alt="single house"
         />
-        <Link to={`/rooms/${slug}`} className="btn-primary house-link">
+        <Link to={`/rooms/${slug}?`+params} className="btn-primary house-link">
           details
         </Link>
       </div>

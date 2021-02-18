@@ -13,7 +13,6 @@ import { Switch, Route } from 'react-router-dom';
 
 function App() {
   const loc = window.location.search;
-  console.log(loc);
   return (
     <>
       <Navbar />

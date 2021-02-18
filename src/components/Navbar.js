@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaAlignRight } from 'react-icons/fa';
 import logo from '../images/logo.svg';
+
+const params = new URLSearchParams(window.location.search);
 export default class Navbar extends Component {
   state = {
     isOpen: false
@@ -16,10 +18,10 @@ export default class Navbar extends Component {
           className={this.state.isOpen ? 'nav-links show-nav' : 'nav-links'}
         >
           <li className="nav-left">
-            <Link to="/">Featured</Link>
+            <Link to={"/?"+params}>Featured</Link>
           </li>
           <li className="nav-leftmost">
-            <Link to="/rooms">Search</Link>
+            <Link to={"/rooms?"+params}>Search</Link>
           </li>
           <li className="nav-center"></li>
           <li className="nav-right">
