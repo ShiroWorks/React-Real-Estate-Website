@@ -28,13 +28,14 @@ export default class RoomProvider extends Component {
       await this.db.query('properties');
       let response = this.db.data;
       await this.db.query('featured');
-      let featured = this.db.data.map(item => item.zpid.S);
-      let rooms = this.formatData(response, featured);
+      let featuredList = this.db.data.map(item => item.zpid.S);
+      let rooms = this.formatData(response, featuredList);
       let featuredRooms = rooms.filter(house => house.featured === true);
       let maxPrice = Math.max(...rooms.map(item => item.price));
       let maxSize = Math.max(...rooms.map(item => item.size));
       this.setState({
         rooms,
+        featuredList,
         featuredRooms,
         sortedRooms: rooms,
         loading: false,
