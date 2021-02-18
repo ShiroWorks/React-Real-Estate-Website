@@ -25,7 +25,7 @@ export default class Navbar extends Component {
           </li>
           <li className="nav-center"></li>
           <li className="nav-right">
-            <Link to="www.foil.group">Journal</Link>
+            <Link to="/">Journal</Link>
           </li>
         </ul>
       </nav>
