@@ -7,7 +7,7 @@ import { memo } from 'react';
 var formatter = new Intl.NumberFormat(undefined, {
   style: 'currency',
   currency: 'USD',
-  currencyDisplay: 'narrowSymbol',
+  currencyDisplay: 'symbol',
   minimumFractionDigits: 0,
   maximumFractionDigits: 0
 });
