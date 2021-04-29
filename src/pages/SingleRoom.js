@@ -9,7 +9,6 @@ import StyledHero from '../components/StyledHero';
 export default class SingleRoom extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       slug: this.props.match.params.slug,
       defaultBcg: defaultBcg
@@ -17,9 +16,6 @@ export default class SingleRoom extends Component {
   }
   static contextType = RoomContext;
 
-  // componentDidMount() {
-  //   console.log(this.props);
-  // }
   render() {
     const { getRoom } = this.context;
     const house = getRoom(this.state.slug);
@@ -41,44 +37,39 @@ export default class SingleRoom extends Component {
 
     return (
       <>
-        <StyledHero img={images[0] || this.state.defaultBcg}>
-          <Banner title={`${city}, ${statecode}`}>
-            <Link to="/rooms" className="btn-primary">
-              back to rooms
-            </Link>
-          </Banner>
-        </StyledHero>
         <section className="single-house">
-          <div className="single-house-images">
-            {defaultImages.map((item, index) => (
-              <img key={index} src={item} alt={name} />
-            ))}
-          </div>
+          <StyledHero img={images[0] || this.state.defaultBcg} className="single-house-image" />
           <div className="single-house-info">
-            <article className="desc">
-              <h3>address</h3>
-              <p>{street}</p>
+            <Link to="/rooms" className="btn-back">
+              <span>Back to rooms</span>
+            </Link>
+            <div className="desc">
+              <h2>{street}</h2>
               <p>{city}, {statecode} {zipcode}</p>
-              <a href={`${url}`}>See on Zillow</a>
-            </article>
-            <article className="info">
-              <h3>info</h3>
-              <p>Price: {price !== undefined ? `$${price}` : `Not Listed`}</p>
-              <p>Size: {size !== -1 ? `${size} sqft` : `Not listed`}</p>
-              <p>Bedrooms: {bedrooms !== undefined ? bedrooms : ` N/A`}</p>
-              <p>Bathrooms: {bathrooms !== undefined ? bathrooms : ` N/A`}</p>
-              <p>Broker: {broker !== undefined ? broker : `Not Listed`}</p>
-            </article>
+            </div>
+            <div className="info">
+              <p>Price: <strong>{price !== undefined ? `$${price}` : `Not Listed`}</strong></p>
+              <p>Size: <strong>{size !== -1 ? `${size} sqft` : `Not listed`}</strong></p>
+              <p>Bedrooms: <strong>{bedrooms !== undefined ? bedrooms : ` N/A`}</strong></p>
+              <p>Bathrooms: <strong>{bathrooms !== undefined ? bathrooms : ` N/A`}</strong></p>
+              <p>Broker: <strong>{broker !== undefined ? broker : `Not Listed`}</strong></p>
+              <a href={`${url}`} className="btn-primary">See on Zillow</a>
+            </div>
           </div>
           <div>
             <FeaturedButton zpid={id}/>
           </div>
         </section>
+        <div className="single-house-gallery">
+          {defaultImages.map((item, index) => (
+            <img key={index} src={item} alt={name} />
+          ))}
+        </div>
       </>
     );
               /*<h6>{garden ? 'with garden' : 'no garden'}</h6>
               <h6>{airconditioning && 'airconditioning included'}</h6>
-              
+
               <section className="house-extras">
           <h6>extras </h6>
           <ul className="extras">

@@ -10,13 +10,15 @@
     "env-cmd": "^10.1.0",
     "eslint-config-react-app": "^6.0.0",
     "express": "^4.17.1",
-    "fsevents": "^2.3.1",
     "react": "^16.8.6",
+    "react-device-detect": "^1.17.0",
     "react-dom": "^16.8.6",
     "react-icons": "^3.6.1",
+    "react-range": "^1.8.7",
     "react-refresh": "^0.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "react-select": "^4.3.0",
     "styled-components": "^4.2.0"
   },
   "scripts": {
@@ -42,5 +44,8 @@
   },
   "devDependencies": {
     "serverless-dotenv-plugin": "^3.3.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.1"
   }
 }

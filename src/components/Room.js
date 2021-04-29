@@ -25,13 +25,12 @@ const Room = memo(({ house }) => {
   return (
     <article className="house">
       <div className="img-container">
-        <img
-          className="houseImg"
-          src={images[0] || defaultImg}
-          alt="single house"
-        />
-        <Link to={`/rooms/${slug}?`+params} className="btn-primary house-link">
-          details
+        <Link to={`/rooms/${slug}?`+params}>
+          <img
+            className="houseImg"
+            src={images[0] || defaultImg}
+            alt="single house"
+          />
         </Link>
       </div>
       <table className="house-info">

@@ -94,7 +94,7 @@ export default class RoomProvider extends Component {
       let name = city + ", " + statecode;
       let slug = id;
       let type = title;
-      
+
       //picks best price to use
       let price;
       let p = item.price.S;
@@ -139,11 +139,31 @@ export default class RoomProvider extends Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log(name, value);
+    if (target.type === 'select') {
+      target.blur();
+    }
 
     this.setState(
       {
         [name]: value
+      },
+      this.filterRooms
+    );
+  };
+
+  handleCustomSelectChange = (val, actionMeta) => {
+    this.setState(
+      {
+        [actionMeta.name]: val.value
+      },
+      this.filterRooms
+    );
+  };
+
+  handlePrice = (val) => {
+    this.setState(
+      {
+        price: val[0]
       },
       this.filterRooms
     );
@@ -181,7 +201,7 @@ export default class RoomProvider extends Component {
     this.setState({
       sortedRooms: tempRooms
     });
-    
+
   };
 
   render() {
@@ -190,7 +210,9 @@ export default class RoomProvider extends Component {
         value={{
           ...this.state,
           getRoom: this.getRoom,
-          handleChange: this.handleChange
+          handleChange: this.handleChange,
+          handleCustomSelectChange: this.handleCustomSelectChange,
+          handlePrice: this.handlePrice
         }}
       >
         {this.props.children}

@@ -18,27 +18,26 @@ export default class Navbar extends Component {
           className={this.state.isOpen ? 'nav-links show-nav' : 'nav-links'}
         >
           <li className="nav-left">
-            <Link to={"/?"+params}>Featured</Link>
+            <Link to={"/rooms?"+params}>Buy</Link>
           </li>
-          <li className="nav-leftmost">
-            <Link to={"/rooms?"+params}>Search</Link>
+          <li className="nav-left">
+            <Link to="/">Sell</Link>
           </li>
-          <li className="nav-center"></li>
           <li className="nav-right">
-            <Link to="/">Journal</Link>
+            <a href="https://www.foil.group/" target="_blank" rel="nofollow">Journal</a>
           </li>
         </ul>
+        <Link className="saleLogo" to="/">
+          <img src={logo} alt="House Sale" />
+        </Link>
+        <button
+          type="button"
+          className={`nav-btn ${this.state.isOpen ? 'active' : ''}`}
+          onClick={this.handleToggle}
+        >
+          Main menu toggle
+        </button>
       </nav>
     );
   }
-  /* <Link to="/">
-      <img className="saleLogo" src={logo} alt="House Sale" />
-    </Link>
-    <button
-      type="button"
-      className="nav-btn"
-      onClick={this.handleToggle}
-    >
-      <FaAlignRight className="nav-icon" />
-    </button>*/
 }
